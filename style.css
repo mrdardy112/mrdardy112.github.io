@@ -15,6 +15,10 @@
     --text-muted: #888;
     --accent-color: #e74c3c;
     --success-color: #2ecc71;
+    --discord-color: #5865F2;
+    --tiktok-color: #000000;
+    --instagram-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+    --youtube-color: #FF0000;
 }
 
 body {
@@ -121,6 +125,13 @@ nav a:hover {
     50% { opacity: 0.5; }
 }
 
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .btn-primary {
     display: inline-block;
     background-color: var(--primary-color);
@@ -130,11 +141,31 @@ nav a:hover {
     text-decoration: none;
     font-weight: 600;
     transition: transform 0.3s, box-shadow 0.3s;
+    border: none;
+    cursor: pointer;
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+}
+
+.btn-discord {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--discord-color);
+    color: white;
+    padding: 1rem 2.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-discord:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
 }
 
 .btn-secondary {
@@ -196,10 +227,94 @@ nav a:hover {
     color: var(--primary-color);
 }
 
+/* Discord Section */
+.discord-section {
+    padding: 5rem 2rem;
+    background-color: var(--darker-bg);
+    text-align: center;
+}
+
+.discord-section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+}
+
+.discord-description {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+.discord-widget-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.discord-widget-container iframe {
+    border-radius: 10px;
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    color: white;
+}
+
+.social-btn.discord {
+    background-color: var(--discord-color);
+}
+
+.social-btn.discord:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(88, 101, 242, 0.4);
+}
+
+.social-btn.tiktok {
+    background-color: var(--tiktok-color);
+}
+
+.social-btn.tiktok:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.6);
+}
+
+.social-btn.instagram {
+    background: var(--instagram-gradient);
+}
+
+.social-btn.instagram:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
+}
+
+.social-btn.youtube {
+    background-color: var(--youtube-color);
+}
+
+.social-btn.youtube:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
 /* Bewerbung Section */
 .bewerbung-section {
     padding: 5rem 2rem;
-    background-color: var(--darker-bg);
+    background-color: var(--dark-bg);
 }
 
 .bewerbung-section h2 {
@@ -249,7 +364,7 @@ nav a:hover {
 /* Regeln Section */
 .regeln-section {
     padding: 5rem 2rem;
-    background-color: var(--dark-bg);
+    background-color: var(--darker-bg);
 }
 
 .regeln-section h2 {
@@ -287,7 +402,7 @@ nav a:hover {
 /* Forum Section */
 .forum-section {
     padding: 5rem 2rem;
-    background-color: var(--darker-bg);
+    background-color: var(--dark-bg);
 }
 
 .forum-section h2 {
@@ -308,6 +423,9 @@ nav a:hover {
     border-radius: 8px;
     transition: transform 0.3s;
     cursor: pointer;
+    text-decoration: none;
+    color: var(--text-color);
+    display: block;
 }
 
 .forum-cat:hover {
@@ -328,6 +446,92 @@ nav a:hover {
 
 .forum-stats span {
     margin: 0 0.3rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    margin: 5% auto;
+    padding: 2rem;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close {
+    color: var(--text-muted);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.close:hover {
+    color: var(--primary-color);
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 2px solid var(--secondary-color);
+    border-radius: 5px;
+    background-color: var(--darker-bg);
+    color: var(--text-color);
+    font-family: inherit;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.form-group textarea {
+    resize: vertical;
 }
 
 /* Footer */
@@ -383,5 +587,15 @@ footer {
 
     .steps {
         grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .discord-widget-container iframe {
+        width: 100%;
+        max-width: 350px;
     }
 }
